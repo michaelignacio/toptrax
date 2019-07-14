@@ -30,4 +30,4 @@ This project is licensed under the MIT License.
 
 ## Acknowledgments
 
-* DevTips for [this React Tutorial](https://www.youtube.com/playlist?list=PLqGj3iMvMa4LFqyGab_aR7M0zfQm2KTuX)
+* DevTips for <a href="https://www.youtube.com/playlist?list=PLqGj3iMvMa4LFqyGab_aR7M0zfQm2KTuX" target="_blank">this React Tutorial</a>
