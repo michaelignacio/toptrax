@@ -46,21 +46,33 @@ const ArtistPhoto = (props) => {
   );
 }
 
-const LoginScreen = () => {
-  return(
-    <div className="LoginScreen">
-    <h1>TopTrax</h1>
-      <h2 style={{textAlign: "center", marginTop: 0, marginBottom: "3rem"}}>Discover your most played tracks on Spotify</h2>
-      <a className="btn" href="http://toptrax-backend.herokuapp.com/login">Log in with Spotify <img src={spotifyIcon} alt="Spotify Icon" width="28" height="28" /></a>
-      {/*<a className="btn" href="http://localhost:8888/login">Log in with Spotify <img src={spotifyIcon} alt="Spotify Icon" width="28" height="28" /></a>*/}
-      <a className="btn github" target="_blank" rel="noopener noreferrer" href="https://github.com/michaelignacio/toptrax">View Source Code <img src={githubMark} alt="Github Mark" width="28" height="28" /></a>
-    </div>
-  );
+const LoginScreen = (props) => {
+  if (props.data.isFetched) {
+    return(
+      <div className="LoginScreen">
+      <h1>TopTrax</h1>
+        <h2 style={{textAlign: "center", marginTop: 0, marginBottom: "3rem"}}>Discover your most played tracks on Spotify</h2>
+        <a className="btn" href="http://toptrax-backend.herokuapp.com/login">Log in with Spotify <img src={spotifyIcon} alt="Spotify Icon" width="28" height="28" /></a>
+        {/*<a className="btn" href="http://localhost:8888/login">Log in with Spotify <img src={spotifyIcon} alt="Spotify Icon" width="28" height="28" /></a>*/}
+        <a className="btn github" target="_blank" rel="noopener noreferrer" href="https://github.com/michaelignacio/toptrax">View Source Code <img src={githubMark} alt="Github Mark" width="28" height="28" /></a>
+      </div>
+    );
+  }
+  return (
+    <div className='sweet-loading'>
+      <ScaleLoader
+        css={override}
+        sizeUnit={"px"}
+        size={150}
+        color={'#fff'}
+        loading={props.loading}
+      />
+    </div> 
+  )
 }
 
 const Chart = (props) => {
   console.log(props)
-  if (props.data.isFetched) {
     return (
       <CSSTransitionGroup
       transitionName="example"
@@ -78,18 +90,6 @@ const Chart = (props) => {
         </div>
         </CSSTransitionGroup>
     )
-  }
-  return (
-    <div className='sweet-loading'>
-      <ScaleLoader
-        css={override}
-        sizeUnit={"px"}
-        size={150}
-        color={'#fff'}
-        loading={props.loading}
-      />
-    </div> 
-  );
 }
 
 const ChartItem = (props) => {
@@ -139,7 +139,7 @@ class App extends Component {
       <div className={this.state.isFetched ? 'App logged-in' : 'App' }>
         {this.state.isFetched ?
           <Chart data={this.state}/>
-          : <LoginScreen/>
+          : <LoginScreen data={this.state} />
         }
       </div>
     );
