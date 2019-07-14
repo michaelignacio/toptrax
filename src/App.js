@@ -47,7 +47,7 @@ const ArtistPhoto = (props) => {
 }
 
 const LoginScreen = (props) => {
-  if (props.data.isFetched) {
+  if (!props.data.isFetched) {
     return(
       <div className="LoginScreen">
       <h1>TopTrax</h1>
