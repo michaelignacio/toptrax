@@ -115,7 +115,6 @@ class App extends Component {
   componentDidMount() {
     let parsed = queryString.parse(window.location.search);
     let accessToken = parsed.access_token;
-    this.setState({ isLoggedIn: true })
     let config = {
       headers: {'Authorization': 'Bearer ' + accessToken},
       params: {
@@ -137,8 +136,8 @@ class App extends Component {
 
   render () {
     return (
-      <div className={this.state.isLoggedIn ? 'App logged-in' : 'App' }>
-        {this.state.isLoggedIn ?
+      <div className={this.state.isFetched ? 'App logged-in' : 'App' }>
+        {this.state.isFetched ?
           <Chart data={this.state}/>
           : <LoginScreen/>
         }
