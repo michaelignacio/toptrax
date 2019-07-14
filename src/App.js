@@ -71,7 +71,7 @@ function LoginScreen() {
     <div className="LoginScreen">
     <h1>TopTrax</h1>
       <h2 style={{textAlign: "center", marginTop: 0, marginBottom: "3rem"}}>Discover your most-played tracks on Spotify</h2>
-      <a className="btn" href="http://toptrax.herokuapp.com/login">Log in with Spotify <img src={spotifyIcon} alt="Spotify Icon" width="28" height="28" /></a>
+      <a className="btn" href="http://toptrax-backend.herokuapp.com/login">Log in with Spotify <img src={spotifyIcon} alt="Spotify Icon" width="28" height="28" /></a>
       <a className="btn github" target="_blank" href="https://github.com/michaelignacio/toptrax">View Source Code <img src={githubMark} alt="Github Mark" width="28" height="28" /></a>
     </div>
   );
