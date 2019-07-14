@@ -53,13 +53,23 @@ class Chart extends Component {
   render() {
     return (
       <div>
-        <h1>Your Hot 100</h1>
+        <h1>Your Top 20 Tracks</h1>
         {(this.props.songs).map((value, index) => {
           return <ChartItem song={value} index={index} key={index} />
         })}
       </div>
     )
   }
+}
+
+function LoginScreen() {
+  return(
+    <div className="LoginScreen">
+    <h1>TopTrax</h1>
+      <p style={{textAlign: "center", marginTop: 0}}>Know your Top 20 Spotify tracks.</p>
+      <a class="btn" href="http://localhost:8888/login">Log in with Spotify</a>
+    </div>
+  );
 }
 
 class App extends Component {
@@ -93,7 +103,7 @@ class App extends Component {
       <div className="App">
         {this.state.authorized ?
           <Chart songs={this.state.serverData} />
-          : 'login'
+          : <LoginScreen/>
         }
       </div>
     );

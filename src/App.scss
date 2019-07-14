@@ -1,14 +1,23 @@
+$background-color: #191414;
+$item-color: #1db954;
+
 .App {
-	background-color: #555;
+	background-color: $background-color;
 	display: flex;
 	justify-content: center;
+	height: 100vh;
+}
+
+h1 {
+	color: $item-color;
+	text-align: center;
 }
 
 .chart-item {
 	display: flex;
-	background-color: #fff;
+	background-color: $item-color;
 	border: 1px solid transparent;
-	width: 600px;
+	width: 650px;
 	margin-bottom: 5px;
 
 	.position {
@@ -19,4 +28,38 @@
 		display: flex;
 		width: 100px;
 	}
+}
+
+.btn {
+	background-color: $item-color;
+	color: #fff;
+	border: 1px solid $item-color;
+    font-size: 14px;
+    line-height: 1;
+    border-radius: 500px;
+    padding: 16px 48px 18px;
+    transition-property: background-color,border-color,color,box-shadow,filter;
+    transition-duration: .3s;
+    border-width: 0;
+    letter-spacing: 2px;
+    min-width: 160px;
+    text-transform: uppercase;
+    white-space: normal;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 700;
+    display: block;
+    margin-top: 2rem;
+
+    &:hover {
+    	background-color: lighten($item-color, 10%);
+    }
+}
+
+.LoginScreen {
+	color: #fff;
+	padding: 5rem;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
 }
