@@ -5,74 +5,65 @@ import githubMark from './GitHub-Mark-32px.png';
 import spotifyIcon from './Spotify_Icon_RGB_Black.png';
 import './App.scss';
 
-class ChartItem extends Component {
-  render() {
-    return (
-      <div className="chart-item">
-        <ChartPosition number={this.props.index+1} />
-        <ArtistPhoto photo={this.props.song.album}/>
-        <SongDetails details={this.props.song}/>
+const SongDetails = (props) => {
+  return (
+      <div className="songDetails" style={{ paddingLeft: "20px", marginTop: "20px" }}>
+        <p style={{ fontWeight: "700", marginBottom: "5px", marginTop: "0" }}>{props.details.name}</p>
+        <p style={{ fontSize: ".9rem", marginTop: "5px" }}>
+          {props.details.artists
+            .map((value) => value.name)
+            .reduce((prev, curr) => [prev, ', ', curr])}
+        </p>
       </div>
-    );
-  }
+  );
 }
 
-class SongDetails extends Component {
-  render() {
-    let titleStyle = { fontWeight: "700", marginBottom: "5px", marginTop: "0" }
-    return (
-        <div className="songDetails" style={{ paddingLeft: "20px", marginTop: "20px" }}>
-          <p style={titleStyle}>{this.props.details.name}</p>
-          <p style={{ fontSize: ".9rem", marginTop: "5px" }}>
-            {this.props.details.artists
-              .map((value) => value.name)
-              .reduce((prev, curr) => [prev, ' ft. ', curr])}
-          </p>
-        </div>
-    );
-  }
+const ChartPosition = (props) => {
+  return (
+      <div className="position">{props.number}</div>
+  ); 
 }
 
-class ChartPosition extends Component {
-  render() {
-    return (
-        <div className="position">{this.props.number}</div>
-    ); 
-  }
-}
-
-class ArtistPhoto extends Component {
-  render() {
-    return (
-        <div style={{ padding: "5px" }}>
-          <img src={this.props.photo.images[1].url} width="128" height="128" />
-        </div>
-    );
-  }
-}
-
-class Chart extends Component {
-  render() {
-    return (
-      <div>
-        <h1>Your Top 20 Tracks</h1>
-        <div className="chartList">
-          {(this.props.songs).map((value, index) => {
-            return <ChartItem song={value} index={index} key={index} />
-          })}
-        </div>
+const ArtistPhoto = (props) => {
+  return (
+      <div style={{ padding: "5px" }}>
+        <img src={props.photo.images[1].url} width="128" height="128" alt={props.photo.name} />
       </div>
-    )
-  }
+  );
 }
 
-function LoginScreen() {
+const LoginScreen = () => {
   return(
     <div className="LoginScreen">
     <h1>TopTrax</h1>
-      <h2 style={{textAlign: "center", marginTop: 0, marginBottom: "3rem"}}>Discover your most-played tracks on Spotify</h2>
-      <a className="btn" href="http://toptrax-backend.herokuapp.com/login">Log in with Spotify <img src={spotifyIcon} alt="Spotify Icon" width="28" height="28" /></a>
-      <a className="btn github" target="_blank" href="https://github.com/michaelignacio/toptrax">View Source Code <img src={githubMark} alt="Github Mark" width="28" height="28" /></a>
+      <h2 style={{textAlign: "center", marginTop: 0, marginBottom: "3rem"}}>Discover your most played tracks on Spotify</h2>
+      { /*for prod*/ }
+      {/*<a className="btn" href="http://toptrax-backend.herokuapp.com/login">Log in with Spotify <img src={spotifyIcon} alt="Spotify Icon" width="28" height="28" /></a>*/}
+      <a className="btn" href="http://localhost:8888/login">Log in with Spotify <img src={spotifyIcon} alt="Spotify Icon" width="28" height="28" /></a>
+      <a className="btn github" target="_blank" rel="noopener noreferrer" href="https://github.com/michaelignacio/toptrax">View Source Code <img src={githubMark} alt="Github Mark" width="28" height="28" /></a>
+    </div>
+  );
+}
+
+const Chart = (props) => {
+  return (
+    <div>
+      <h1>Your Top 20 Tracks</h1>
+      <div className="chartList">
+        {(props.songs).map((value, index) => {
+          return <ChartItem song={value} index={index} key={index} />
+        })}
+      </div>
+    </div>
+  )
+}
+
+const ChartItem = (props) => {
+  return (
+    <div className="chart-item">
+      <ChartPosition number={props.index+1} />
+      <ArtistPhoto photo={props.song.album}/>
+      <SongDetails details={props.song}/>
     </div>
   );
 }
@@ -109,7 +100,7 @@ class App extends Component {
     return (
       <div className={this.state.authorized ? 'App logged-in' : 'App' }>
         {this.state.authorized ?
-          <Chart songs={this.state.serverData} />
+          <Chart songs={this.state.serverData}/>
           : <LoginScreen/>
         }
       </div>
