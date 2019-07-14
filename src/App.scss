@@ -5,6 +5,10 @@ body, html {
 	height: 100vh;
 }
 
+.text-white {
+	color: #fff;
+}
+
 .App {
 	background-color: $background-color;
 	display: flex;
@@ -123,4 +127,13 @@ h1 {
 	.btn img {
 		display: none;
 	}
+}
+
+.example-appear {
+  opacity: 0.01;
+}
+
+.example-appear.example-appear-active {
+  opacity: 1;
+  transition: opacity .5s ease-in;
 }
