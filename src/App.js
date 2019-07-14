@@ -137,7 +137,7 @@ class App extends Component {
 
   render () {
     return (
-      <div className={this.state.isFetched ? 'App logged-in' : 'App' }>
+      <div className={this.state.isLoggedIn ? 'App logged-in' : 'App' }>
         {this.state.isLoggedIn ?
           <Chart data={this.state}/>
           : <LoginScreen/>
