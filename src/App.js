@@ -45,7 +45,7 @@ class ArtistPhoto extends Component {
   render() {
     return (
         <div style={{ padding: "5px" }}>
-          <img src={this.props.photo.images[2].url} alt=""/>
+          <img src={this.props.photo.images[1].url} width="128" height="128" />
         </div>
     );
   }
