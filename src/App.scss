@@ -1,18 +1,19 @@
 .App {
-	background-color: #ddd;
-	height: 100vh;
+	background-color: #555;
+	display: flex;
+	justify-content: center;
 }
 
 .chart-item {
 	display: flex;
 	background-color: #fff;
 	border: 1px solid transparent;
-	max-width: 700px;
+	width: 600px;
 	margin-bottom: 5px;
 
 	.position {
 		font-weight: 700;
-		font-size: 2.5rem;
+		font-size: 1.75rem;
 		align-items: center;
 		justify-content: center;
 		display: flex;
