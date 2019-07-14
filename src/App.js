@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import queryString from 'query-string';
 import axios from 'axios';
+import githubMark from './GitHub-Mark-32px.png';
+import spotifyIcon from './Spotify_Icon_RGB_Black.png';
 import './App.scss';
 
 class ChartItem extends Component {
@@ -19,7 +21,7 @@ class SongDetails extends Component {
   render() {
     let titleStyle = { fontWeight: "700", marginBottom: "5px", marginTop: "0" }
     return (
-        <div style={{ paddingLeft: "20px", marginTop: "20px" }}>
+        <div className="songDetails" style={{ paddingLeft: "20px", marginTop: "20px" }}>
           <p style={titleStyle}>{this.props.details.name}</p>
           <p style={{ fontSize: ".9rem", marginTop: "5px" }}>
             {this.props.details.artists
@@ -54,9 +56,11 @@ class Chart extends Component {
     return (
       <div>
         <h1>Your Top 20 Tracks</h1>
-        {(this.props.songs).map((value, index) => {
-          return <ChartItem song={value} index={index} key={index} />
-        })}
+        <div className="chartList">
+          {(this.props.songs).map((value, index) => {
+            return <ChartItem song={value} index={index} key={index} />
+          })}
+        </div>
       </div>
     )
   }
@@ -66,8 +70,9 @@ function LoginScreen() {
   return(
     <div className="LoginScreen">
     <h1>TopTrax</h1>
-      <p style={{textAlign: "center", marginTop: 0}}>Know your Top 20 Spotify tracks.</p>
-      <a class="btn" href="http://localhost:8888/login">Log in with Spotify</a>
+      <h2 style={{textAlign: "center", marginTop: 0, marginBottom: "3rem"}}>Discover your most-played Spotify tracks</h2>
+      <a className="btn" href="http://localhost:8888/login">Log in with Spotify <img src={spotifyIcon} alt="Spotify Icon" width="28" height="28" /></a>
+      <a className="btn github" href="https://github.com/michaelignacio/toptrax">View Source Code <img src={githubMark} alt="Github Mark" width="28" height="28" /></a>
     </div>
   );
 }
@@ -82,11 +87,13 @@ class App extends Component {
     let parsed = queryString.parse(window.location.search);
     let accessToken = parsed.access_token;
     let config = {
-      headers: {'Authorization': 'Bearer ' + accessToken}
+      headers: {'Authorization': 'Bearer ' + accessToken},
+      params: {
+        time_range: 'long_term'
+      }
     }
 
-    axios.get(`https://api.spotify.com/v1/me/top/tracks`,
-      config)
+    axios.get(`https://api.spotify.com/v1/me/top/tracks`, config)
       .then(response => {
         console.log(response.data.items)
         this.setState({ 
@@ -100,7 +107,7 @@ class App extends Component {
 
   render () {
     return (
-      <div className="App">
+      <div className={this.state.authorized ? 'App logged-in' : 'App' }>
         {this.state.authorized ?
           <Chart songs={this.state.serverData} />
           : <LoginScreen/>
