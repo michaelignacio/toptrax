@@ -73,7 +73,6 @@ const LoginScreen = (props) => {
 }
 
 const Chart = (props) => {
-  console.log(props)
     return (
       <CSSTransitionGroup
       transitionName="example"
@@ -130,7 +129,6 @@ class App extends Component {
 
     axios.get(`https://api.spotify.com/v1/me/top/tracks`, config)
       .then(response => {
-        console.log(response.data.items)
         this.setState({ 
           serverData: response.data.items,
           isFetched: true
