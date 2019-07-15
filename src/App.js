@@ -47,7 +47,7 @@ const ArtistPhoto = (props) => {
 }
 
 const LoginScreen = (props) => {
-  if (!props.data.isFetched) {
+  if (!props.data.isFetched && !props.data.isLoggedIn) {
     return(
       <div className="LoginScreen">
       <h1>TopTrax</h1>
@@ -57,18 +57,19 @@ const LoginScreen = (props) => {
         <a className="btn github" target="_blank" rel="noopener noreferrer" href="https://github.com/michaelignacio/toptrax">View Source Code <img src={githubMark} alt="Github Mark" width="28" height="28" /></a>
       </div>
     );
+  } else if (props.data.isLoggedIn && !props.data.isFetched) {
+    return (
+      <div className='sweet-loading'>
+        <ScaleLoader
+          css={override}
+          sizeUnit={"px"}
+          size={150}
+          color={'#fff'}
+          loading={props.loading}
+        />
+      </div> 
+    );
   }
-  return (
-    <div className='sweet-loading'>
-      <ScaleLoader
-        css={override}
-        sizeUnit={"px"}
-        size={150}
-        color={'#fff'}
-        loading={props.loading}
-      />
-    </div> 
-  )
 }
 
 const Chart = (props) => {
@@ -115,6 +116,11 @@ class App extends Component {
   componentDidMount() {
     let parsed = queryString.parse(window.location.search);
     let accessToken = parsed.access_token;
+
+    if ( accessToken ) {
+      this.setState({ isLoggedIn: true })
+    }
+
     let config = {
       headers: {'Authorization': 'Bearer ' + accessToken},
       params: {
