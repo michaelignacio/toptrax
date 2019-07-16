@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Helmet } from 'react-helmet';
 import queryString from 'query-string';
 import axios from 'axios';
 import { css } from '@emotion/core';
@@ -52,8 +53,8 @@ const LoginScreen = (props) => {
       <div className="LoginScreen">
       <h1>TopTrax</h1>
         <h2 style={{textAlign: "center", marginTop: 0, marginBottom: "3rem"}}>Discover your most played tracks on Spotify</h2>
-        <a className="btn" href="http://toptrax-backend.herokuapp.com/login">Log in with Spotify <img src={spotifyIcon} alt="Spotify Icon" width="28" height="28" /></a>
-        {/*<a className="btn" href="http://localhost:8888/login">Log in with Spotify <img src={spotifyIcon} alt="Spotify Icon" width="28" height="28" /></a>*/}
+        {/*<a className="btn" href="http://toptrax-backend.herokuapp.com/login">Log in with Spotify <img src={spotifyIcon} alt="Spotify Icon" width="28" height="28" /></a>*/}
+        <a className="btn" href="http://localhost:8888/login">Log in with Spotify <img src={spotifyIcon} alt="Spotify Icon" width="28" height="28" /></a>
         <a className="btn github" target="_blank" rel="noopener noreferrer" href="https://github.com/michaelignacio/toptrax">View Source Code <img src={githubMark} alt="Github Mark" width="28" height="28" /></a>
       </div>
     );
@@ -80,13 +81,11 @@ const Chart = (props) => {
       transitionAppearTimeout={500}
       transitionEnter={false}
       transitionLeave={false}>
-        <div>
-          <h1>Your Top 20 Tracks</h1>
-          <div className="chartList">
-            {(props.data.serverData).map((value, index) => {
-              return <ChartItem song={value} index={index} key={index} />
-            })}
-          </div>
+        <h1>Your Top 20 Tracks</h1>
+        <div className="chartList">
+          {(props.data.serverData).map((value, index) => {
+            return <ChartItem song={value} index={index} key={index} />
+          })}
         </div>
         </CSSTransitionGroup>
     )
@@ -141,6 +140,9 @@ class App extends Component {
   render () {
     return (
       <div className={this.state.isFetched ? 'App logged-in' : 'App' }>
+        <Helmet>
+          <title>TopTrax - Know Your Top Spotify Tracks</title>
+        </Helmet>
         {this.state.isFetched ?
           <Chart data={this.state}/>
           : <LoginScreen data={this.state} />
