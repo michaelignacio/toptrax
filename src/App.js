@@ -6,7 +6,6 @@ import { ScaleLoader } from 'react-spinners';
 import { CSSTransitionGroup } from 'react-transition-group' // ES6
 import githubMark from './GitHub-Mark-32px.png';
 import spotifyIcon from './Spotify_Icon_RGB_Black.png';
-import toptraxImage from './toptrax-image.png';
 import './App.scss';
 
 const override = css`
