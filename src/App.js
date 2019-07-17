@@ -51,13 +51,20 @@ const ArtistPhoto = (props) => {
 const LoginScreen = (props) => {
   if (!props.data.isFetched && !props.data.isLoggedIn) {
     return(
-      <div className="LoginScreen">
-      <h1>TopTrax</h1>
-        <h2 style={{textAlign: "center", marginTop: 0, marginBottom: "3rem"}}>Discover your most played tracks on Spotify</h2>
-        {/*<a className="btn" href="http://toptrax-backend.herokuapp.com/login">Log in with Spotify <img src={spotifyIcon} alt="Spotify Icon" width="28" height="28" /></a>*/}
-        <a className="btn" href="http://localhost:8888/login">Log in with Spotify <img src={spotifyIcon} alt="Spotify Icon" width="28" height="28" /></a>
-        <a className="btn github" target="_blank" rel="noopener noreferrer" href="https://github.com/michaelignacio/toptrax">View Source Code <img src={githubMark} alt="Github Mark" width="28" height="28" /></a>
-      </div>
+      <CSSTransitionGroup
+      transitionName="example"
+      transitionAppear={true}
+      transitionAppearTimeout={500}
+      transitionEnter={false}
+      transitionLeave={false}>
+        <div className="LoginScreen">
+          <h1>TopTrax</h1>
+          <h2 style={{textAlign: "center", marginTop: 0, marginBottom: "3rem"}}>Discover your most played tracks on Spotify</h2>
+          {/*<a className="btn" href="http://toptrax-backend.herokuapp.com/login">Log in with Spotify <img src={spotifyIcon} alt="Spotify Icon" width="28" height="28" /></a>*/}
+          <a className="btn" href="http://localhost:8888/login">Log in with Spotify <img src={spotifyIcon} alt="Spotify Icon" width="28" height="28" /></a>
+          <a className="btn github" target="_blank" rel="noopener noreferrer" href="https://github.com/michaelignacio/toptrax">View Source Code <img src={githubMark} alt="Github Mark" width="28" height="28" /></a>
+        </div>
+      </CSSTransitionGroup>
     );
   } else if (props.data.isLoggedIn && !props.data.isFetched) {
     return (
@@ -76,6 +83,7 @@ const LoginScreen = (props) => {
 
 const Chart = (props) => {
     return (
+      <div>
       <CSSTransitionGroup
       transitionName="example"
       transitionAppear={true}
@@ -88,7 +96,8 @@ const Chart = (props) => {
             return <ChartItem song={value} index={index} key={index} />
           })}
         </div>
-        </CSSTransitionGroup>
+      </CSSTransitionGroup>
+      </div>
     )
 }
 
@@ -150,10 +159,9 @@ class App extends Component {
           <meta property="og:type" content="website" />
         </MetaTags>
 
-        {this.state.isFetched ?
+        { this.state.isFetched ?
           <Chart data={this.state}/>
-          : <LoginScreen data={this.state} />
-        }
+          : <LoginScreen data={this.state} /> }
       </div>
     );
   }
