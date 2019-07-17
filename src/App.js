@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Helmet } from 'react-helmet';
+import MetaTags from 'react-meta-tags';
 import queryString from 'query-string';
 import axios from 'axios';
 import { css } from '@emotion/core';
@@ -141,13 +141,13 @@ class App extends Component {
   render () {
     return (
       <div className={this.state.isFetched ? 'App logged-in' : 'App' }>
-        <Helmet>
+        <MetaTags>
           <title>TopTrax - Know Your Top Spotify Tracks</title>
           <meta property="og:title" content="TopTrax" />
           <meta property="og:url" content="http://toptrax.herokuapp.com/" />
           <meta property="og:image" content={toptraxImage} />
           <meta property="og:type" content="website" />
-        </Helmet>
+        </MetaTags>
 
         {this.state.isFetched ?
           <Chart data={this.state}/>
