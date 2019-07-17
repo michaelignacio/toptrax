@@ -65,7 +65,6 @@ const LoginScreen = (props) => {
       </CSSTransitionGroup>
     );
   } else if (props.data.isLoggedIn && !props.data.isFetched) {
-    console.log(props)
     return (
       <div className='sweet-loading'>
         <ScaleLoader
@@ -124,10 +123,6 @@ class App extends Component {
     let parsed = queryString.parse(window.location.search);
     let accessToken = parsed.access_token;
 
-    if ( accessToken ) {
-      this.setState({ isLoggedIn: true })
-    }
-
     let config = {
       headers: {'Authorization': 'Bearer ' + accessToken},
       params: {
@@ -135,7 +130,7 @@ class App extends Component {
       }
     }
 
-    this.state.isLoggedIn && axios.get(`https://api.spotify.com/v1/me/top/tracks`, config)
+    axios.get(`https://api.spotify.com/v1/me/top/tracks`, config)
       .then(response => {
         this.setState({ 
           serverData: response.data.items,
