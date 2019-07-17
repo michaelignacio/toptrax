@@ -141,8 +141,14 @@ class App extends Component {
   render () {
     return (
       <div className={this.state.isFetched ? 'App logged-in' : 'App' }>
-        {/*<MetaTags>
-        </MetaTags>*/}
+        <MetaTags>
+          <title>TopTrax - Know Your Top Spotify Tracks</title>
+          <meta property="og:title" content="TopTrax" />
+          <meta property="og:url" content="http://toptrax.herokuapp.com/" />
+          <meta property="og:image" content="https://i.imgur.com/HhiBV6p.png" />
+          <meta property="og:description" content="Discover your most played tracks on Spotify." />
+          <meta property="og:type" content="website" />
+        </MetaTags>
 
         {this.state.isFetched ?
           <Chart data={this.state}/>
