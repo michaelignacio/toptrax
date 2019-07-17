@@ -7,6 +7,7 @@ import { ScaleLoader } from 'react-spinners';
 import { CSSTransitionGroup } from 'react-transition-group' // ES6
 import githubMark from './GitHub-Mark-32px.png';
 import spotifyIcon from './Spotify_Icon_RGB_Black.png';
+import toptraxImage from './toptrax-image.png';
 import './App.scss';
 
 const override = css`
@@ -142,7 +143,12 @@ class App extends Component {
       <div className={this.state.isFetched ? 'App logged-in' : 'App' }>
         <Helmet>
           <title>TopTrax - Know Your Top Spotify Tracks</title>
+          <meta property="og:title" content="TopTrax" />
+          <meta property="og:url" content="http://toptrax.herokuapp.com/" />
+          <meta property="og:image" content={toptraxImage} />
+          <meta property="og:type" content="website" />
         </Helmet>
+
         {this.state.isFetched ?
           <Chart data={this.state}/>
           : <LoginScreen data={this.state} />
