@@ -134,7 +134,7 @@ class App extends Component {
       }
     }
 
-    axios.get(`https://api.spotify.com/v1/me/top/tracks`, config)
+    this.state.isLoggedIn && axios.get(`https://api.spotify.com/v1/me/top/tracks`, config)
       .then(response => {
         this.setState({ 
           serverData: response.data.items,
