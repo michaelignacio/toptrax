@@ -1,7 +1,8 @@
 $background-color: #191414;
 $item-color: #1db954;
 
-body, html {
+body, 
+html {
 	height: 100vh;
 }
 
@@ -9,40 +10,11 @@ body, html {
 	color: #fff;
 }
 
-.App {
-	background-color: $background-color;
-	display: flex;
-	justify-content: center;
-	height: 100vh;
-
-	&.logged-in {
-		height: 100%;
-	}
-}
-
 h1 {
 	color: $item-color;
 	text-align: center;
 	font-size: 5rem;
 	margin-bottom: 1rem;
-}
-
-.chart-item {
-	display: flex;
-	background-color: $item-color;
-	border: 1px solid transparent;
-	min-width: 650px;
-	margin-bottom: 5px;
-    align-items: center;
-
-	.position {
-		font-weight: 700;
-		font-size: 1.75rem;
-		align-items: center;
-		justify-content: center;
-		display: flex;
-		min-width: 100px;
-	}
 }
 
 .btn {
@@ -86,12 +58,41 @@ h1 {
     }
 }
 
+.App {
+	background-color: $background-color;
+	display: flex;
+	justify-content: center;
+	height: 100vh;
+
+	&.logged-in {
+		height: 100%;
+	}
+}
+
 .LoginScreen {
 	color: #fff;
 	padding: 5rem;
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
+}
+
+.chart-item {
+	display: flex;
+	background-color: $item-color;
+	border: 1px solid transparent;
+	min-width: 650px;
+	margin-bottom: 5px;
+    align-items: center;
+
+	.position {
+		font-weight: 700;
+		font-size: 1.75rem;
+		align-items: center;
+		justify-content: center;
+		display: flex;
+		min-width: 100px;
+	}
 }
 
 @media (max-width: 767px) {
