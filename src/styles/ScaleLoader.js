@@ -1,5 +1,3 @@
-import React from 'react';
-
 const scaleLoaderStyle = {
   width: "40px",
   height: "40px",
