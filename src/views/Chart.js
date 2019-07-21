@@ -3,17 +3,7 @@ import { ScaleLoader } from 'react-spinners';
 import { CSSTransitionGroup } from 'react-transition-group';
 import ChartItem from './ChartItem';
 import styles from '../styles/Type.module.css';
-
-const scaleLoaderStyle = {
-  width: "40px",
-  height: "40px",
-  position: "absolute",
-  top: 0,
-  bottom: 0,
-  left: 0,
-  right: 0,
-  margin: "auto"
-}
+import scaleLoaderStyle from '../styles/ScaleLoader';
 
 const Chart = (props) => {
     if (props.data.isLoggedIn && !props.data.isFetched) {
