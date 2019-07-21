@@ -25,6 +25,17 @@
 	 margin-top: 20px;
 }
 
+.title {
+	font-weight: 700;
+	margin-bottom: 5px;
+	margin-top: 0;
+}
+
+.artists {
+	font-size: .9rem;
+	margin-top: 5px;
+}
+
 @media (max-width: 767px) {
 	.chartItem {
 		min-width: 300px;
