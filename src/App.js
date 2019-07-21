@@ -3,6 +3,7 @@ import queryString from 'query-string';
 import axios from 'axios';
 import LoginScreen from './views/LoginScreen';
 import Chart from './views/Chart';
+import styles from './styles/App.module.css';
 import './App.scss';
 
 class App extends Component {
@@ -42,7 +43,7 @@ class App extends Component {
 
   render () {
     return (
-      <div className={this.state.isFetched ? 'App logged-in' : 'App' }>
+      <div className={this.state.isFetched ? `${styles.App} ${styles.loggedIn}` : styles.App }>
         { this.state.isLoggedIn ?
           <Chart data={this.state} />
           : <LoginScreen data={this.state} /> }

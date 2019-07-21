@@ -2,6 +2,7 @@ import React from 'react';
 import { ScaleLoader } from 'react-spinners';
 import { CSSTransitionGroup } from 'react-transition-group';
 import ChartItem from './ChartItem';
+import styles from '../styles/Type.module.css';
 
 const scaleLoaderStyle = {
   width: "40px",
@@ -37,7 +38,7 @@ const Chart = (props) => {
         transitionEnter={false}
         transitionLeave={false}
       >
-        <h1>Your Top 20 Tracks</h1>
+        <h1 className={styles.h1Style}>Your Top 20 Tracks</h1>
         <div className="chartList">
           {(props.data.serverData).map((value, index) => {
             return <ChartItem song={value} index={index} key={index} />

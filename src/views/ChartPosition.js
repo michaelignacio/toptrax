@@ -1,8 +1,9 @@
 import React from 'react';
+import styles from '../styles/ChartItem.module.css'
 
 const ChartPosition = (props) => {
   return (
-      <div className="position">{props.number}</div>
+      <div className={styles.position}>{props.number}</div>
   ); 
 }
 

@@ -1,0 +1,50 @@
+.btn {
+	background-color: #1db954;
+	color: #fff;
+	border: 1px solid #1db954;
+    font-size: 12px;
+    line-height: 1;
+    border-radius: 500px;
+    padding: 0 48px 18px;
+    transition-property: background-color,border-color,color,box-shadow,filter;
+    transition-duration: .3s;
+    border-width: 0;
+    letter-spacing: 2px;
+    min-width: 160px;
+    text-transform: uppercase;
+    white-space: normal;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 700;
+    display: block;
+    margin: .5rem 0;
+}
+
+.btn:hover {
+    background-color: darken(#1db954, 10%);
+}
+
+.btn img {
+    position: relative;
+    top: 10px;
+    margin-left: 5px
+}
+
+.btn.github {
+    background-color: #fff;
+    color: #000;
+}
+
+.btn.github:hover {
+    background-color: darken(#fff, 15%);
+}
+
+@media (max-width: 767px) {
+    .btn {
+        padding-top: 16px;
+    }
+
+    .btn img {
+        display: none;
+    }
+}

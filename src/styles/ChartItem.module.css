@@ -1,0 +1,47 @@
+.chartItem {
+	display: flex;
+	background-color: #1db954;
+	border: 1px solid transparent;
+	min-width: 650px;
+	margin-bottom: 5px;
+    align-items: center;
+}
+
+.chartItem .artistPhoto {
+	padding: 5px;
+}
+
+.chartItem .position {
+	font-weight: 700;
+	font-size: 1.75rem;
+	align-items: center;
+	justify-content: center;
+	display: flex;
+	min-width: 100px;
+}
+
+.chartItem .songDetails {
+	 padding-left: 20px;
+	 margin-top: 20px;
+}
+
+@media (max-width: 767px) {
+	.chartItem {
+		min-width: 300px;
+		width: 90%;
+		margin: 10px auto;
+	}
+
+	.chartItem img {
+		width: 64px;
+		height: 64px;
+	}
+
+	.chartItem .position {
+		min-width: 70px;
+	}
+
+	.chartItem .songDetails {
+		padding: 0 30px;
+	}
+}

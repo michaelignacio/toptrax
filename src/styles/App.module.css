@@ -1,0 +1,16 @@
+.App {
+	background-color: #191414;
+	display: flex;
+	justify-content: center;
+	height: 100vh;
+}
+
+.App.loggedIn {
+	height: 100%;
+}
+
+@media (max-width: 767px) {
+	.App.loggedIn h1 {
+			font-size: 2.5rem;
+	}
+}
