@@ -1,46 +1,33 @@
 import React, { Component } from 'react';
 import { ScaleLoader } from 'react-spinners';
 import { CSSTransitionGroup } from 'react-transition-group';
-// import ChartItem from './ChartItem';
+import ChartItem from './ChartItem';
 import styles from '../styles/Type.module.css';
 import scaleLoaderStyle from '../styles/ScaleLoader';
-
-
-import ChartPosition from './ChartPosition';
-import ArtistPhoto from './ArtistPhoto';
-import SongDetails from './SongDetails';
-import itemStyles from '../styles/ChartItem.module.css'
 
 class Chart extends Component {
   constructor(props) {
     super(props)
+
+    const songSnippets = []
+    const dataArray = props.data.serverData
+    dataArray.length === 20 && dataArray.map((value, index) => {
+      return songSnippets.push(new Audio(value.preview_url))
+    })
+
     this.state = {
       songBeingPreviewed: -1,
+      isMapping: false,
       audio: null,
       isPlaying: false,
-      songSnippets: []
+      songSnippets: songSnippets
     }
+
+    this.handleClick = this.handleClick.bind(this)
   }
 
-  handleClick(props) {
-    if (!this.state.isPlaying) {
-      this.setState({ audio: new Audio(props) 
-      }, () => {
-        if (!this.state.isPlaying) {
-          this.setState({ isPlaying: true }, () => {
-            this.state.audio.play()
-          })
-        }
-      });
-    } else {
-      this.setState({ isPlaying: false }, () => {
-          this.state.audio.pause()
-        })
-    }
-  }
-
-  mapSongs(props) {
-    // console.log(props)
+  handleClick() {
+    console.log('test')
   }
 
   render() {
@@ -54,9 +41,10 @@ class Chart extends Component {
             color={'#fff'}
             loading={this.props.loading}
           />
-        </div> 
+        </div>
       );
     }
+
     return (
       <CSSTransitionGroup
         transitionName="example"
@@ -68,16 +56,7 @@ class Chart extends Component {
         <h1 className={styles.h1Style}>Your Top 20 Tracks</h1>
         <div className="chartList">
           {(this.props.data.serverData).map((value, index) => {
-            // return <ChartItem song={value} index={index} key={index} onClick={this.handleClick}/>
-            // this.mapSongs(value.preview_url)
-
-            return (
-              <div className={itemStyles.chartItem} key={index} onClick={() => this.handleClick(value.preview_url)}>
-                <ChartPosition number={index+1} />
-                <ArtistPhoto photo={value.album} />
-                <SongDetails details={value} />
-              </div>
-            )
+            return <ChartItem song={value} index={index} key={index} onClick={this.handleClick} />
           })}
         </div>
       </CSSTransitionGroup>

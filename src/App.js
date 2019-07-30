@@ -32,7 +32,7 @@ class App extends Component {
 
     axios.get(`https://api.spotify.com/v1/me/top/tracks`, config)
       .then(response => {
-        this.setState({ 
+        this.setState({
           serverData: response.data.items,
           isFetched: true
         })
@@ -44,7 +44,7 @@ class App extends Component {
   render () {
     return (
       <div className={this.state.isFetched ? `${styles.App} ${styles.loggedIn}` : styles.App }>
-        { this.state.isLoggedIn ?
+        { this.state.isLoggedIn && this.state.isFetched ?
           <Chart data={this.state} />
           : <LoginScreen data={this.state} /> }
       </div>
