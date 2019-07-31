@@ -4,11 +4,11 @@
 	border: 1px solid transparent;
 	min-width: 650px;
 	margin-bottom: 5px;
-    align-items: center;
+	align-items: center;
 }
 
-.chartItem .CoverArt {
-	padding: 5px;
+.chartItem .coverArt {
+	margin: 5px;
 }
 
 .chartItem .position {
@@ -21,8 +21,8 @@
 }
 
 .chartItem .songDetails {
-	 padding-left: 20px;
-	 margin-top: 20px;
+	padding-left: 20px;
+	margin-top: 20px;
 }
 
 .title {
@@ -34,6 +34,44 @@
 .artists {
 	font-size: .9rem;
 	margin-top: 5px;
+}
+
+.chartItem .icon {
+	position: relative;
+	left: 50px;
+	top:  -80px;
+	opacity: 0;
+	transition: opacity .3s, top .3s;
+	color:  #fff;
+	font-size: 2rem;
+	z-index: 1;
+}
+
+.chartItem:hover .icon {
+	opacity: 1;
+}
+
+.coverArt {
+    position: relative;
+    width: 128px;
+    height: 128px;
+}
+
+.coverArt:after {
+	content: '\A';
+	position: absolute;
+	width: 100%;
+	height:100%;
+	top: 0;
+	left: 0;
+	background: rgba(0,0,0,0.4);
+	opacity: 0;
+	transition: all .15s;
+	-webkit-transition: all .15s;
+}
+
+.chartItem:hover .coverArt:after {
+	opacity: 1;
 }
 
 @media (max-width: 767px) {
