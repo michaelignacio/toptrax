@@ -4,7 +4,7 @@ A web app created in React that fetches a user's long-term most-played tracks us
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 ```
 git clone https://github.com/michaelignacio/toptrax.git
@@ -19,6 +19,7 @@ npm start
 * [Spotify Web API](https://developer.spotify.com/documentation/web-api/) - Used the Spotify API to fetch the user's top tracks
 * [axios](https://www.npmjs.com/package/axios) - Promise-based HTTP client
 * [oauth-bridge-template](https://github.com/mpj/oauth-bridge-template) - This service logs in to Spotify and redirects the user to a given frontend application with a valid access_token as a parameter in the url.
+* [CSS Modules](https://github.com/css-modules/css-modules) - Styles are done via CSS Modules
 
 ## Authors
 
