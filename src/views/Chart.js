@@ -17,11 +17,8 @@ class Chart extends Component {
 
     this.state = {
       songBeingPreviewed: false,
-      isMapping: false,
-      audio: null,
       isPlaying: false,
-      songSnippets: songSnippets,
-      theSong: songSnippets[0]
+      songSnippets: songSnippets
     }
   }
 
@@ -32,13 +29,20 @@ class Chart extends Component {
   playSong(index) {
     if (!this.state.isPlaying) {
       this.state.songSnippets[index].play()
+        this.setState({ isPlaying: true })
+    } else if ( this.state.songBeingPreviewed === index) {
+      if ( this.state.isPlaying ) {
+        this.state.songSnippets[index].pause()
+        this.setState({ isPlaying: false })
+      } else {
+        this.state.songSnippets[index].play()
+      }
     } else {
       this.state.songSnippets[this.state.songBeingPreviewed].pause()
       this.state.songSnippets[index].play()
     }
+
     this.setState({
-      isPlaying: true,
-      // isPlaying: !this.state.isPlaying,
       songBeingPreviewed: index
     }, () => {
       console.log(this.state)
