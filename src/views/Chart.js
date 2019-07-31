@@ -16,15 +16,13 @@ class Chart extends Component {
     })
 
     this.state = {
-      songBeingPreviewed: -1,
+      songBeingPreviewed: false,
       isMapping: false,
       audio: null,
       isPlaying: false,
       songSnippets: songSnippets,
       theSong: songSnippets[0]
     }
-
-    // this.handleClick = this.handleClick.bind(this)
   }
 
   handleClick = (index) => {
@@ -35,9 +33,16 @@ class Chart extends Component {
     if (!this.state.isPlaying) {
       this.state.songSnippets[index].play()
     } else {
-      this.state.songSnippets[index].pause()
+      this.state.songSnippets[this.state.songBeingPreviewed].pause()
+      this.state.songSnippets[index].play()
     }
-    this.setState({ isPlaying: !this.state.isPlaying })
+    this.setState({
+      isPlaying: true,
+      // isPlaying: !this.state.isPlaying,
+      songBeingPreviewed: index
+    }, () => {
+      console.log(this.state)
+    })
   }
 
   render() {
@@ -67,7 +72,7 @@ class Chart extends Component {
         <div onClick={()=>this.reRender()}>click</div>
         <div className="chartList">
           {(this.props.data.serverData).map((value, index) => {
-            return <ChartItem song={value} index={index} key={index} playMethod={this.handleClick} />
+            return <ChartItem song={value} index={index} key={index} play={this.handleClick} />
           })}
         </div>
       </CSSTransitionGroup>
