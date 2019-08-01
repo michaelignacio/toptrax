@@ -18,7 +18,7 @@ npm start
 * [Create React App](https://github.com/facebook/create-react-app) - This project is bootstrapped with create-react-app
 * [Spotify Web API](https://developer.spotify.com/documentation/web-api/) - Used the Spotify API to fetch the user's top tracks
 * [axios](https://www.npmjs.com/package/axios) - Promise-based HTTP client
-* [oauth-bridge-template](https://github.com/mpj/oauth-bridge-template) - This service logs in to Spotify and redirects the user to a given frontend application with a valid access_token as a parameter in the url.
+* [oauth-bridge-template](https://github.com/mpj/oauth-bridge-template) - This service logs in to Spotify and redirects the user to a given frontend application with a valid access_token as a parameter in the url
 * [CSS Modules](https://github.com/css-modules/css-modules) - Styles are done via CSS Modules
 
 ## Authors
