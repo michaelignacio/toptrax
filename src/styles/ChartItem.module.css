@@ -11,6 +11,10 @@
 	margin: 5px;
 }
 
+.chartItem .coverArt:hover {
+	cursor: pointer;
+}
+
 .chartItem .position {
 	font-weight: 700;
 	font-size: 1.75rem;
