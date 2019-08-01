@@ -11,9 +11,9 @@ class ChartItem extends Component {
 
 	render() {
 		return (
-			<div className={styles.chartItem} onClick={this.handleClick}>
+			<div className={styles.chartItem}>
 		      <ChartPosition number={this.props.index+1} />
-		      <CoverArt photo={this.props.song.album} />
+		      <CoverArt photo={this.props.song.album} play={this.handleClick}/>
 		      <SongDetails details={this.props.song} />
 		    </div>
 		)

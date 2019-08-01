@@ -46,7 +46,7 @@ class Chart extends Component {
     this.setState({
       songBeingPreviewed: index
     }, () => {
-      console.log(this.state)
+      // console.log(this.state)
     })
   }
 
