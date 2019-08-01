@@ -13,7 +13,7 @@ class ChartItem extends Component {
 		return (
 			<div className={styles.chartItem}>
 		      <ChartPosition number={this.props.index+1} />
-		      <CoverArt photo={this.props.song.album} play={this.handleClick}/>
+		      <CoverArt photo={this.props.song.album} play={this.handleClick} songBeingPreviewed={this.props.index === this.props.songBeingPreviewed ? true : false} isAnythingPlaying={this.props.isAnythingPlaying} />
 		      <SongDetails details={this.props.song} />
 		    </div>
 		)
