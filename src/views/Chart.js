@@ -4,6 +4,7 @@ import { CSSTransitionGroup } from 'react-transition-group';
 import ChartItem from './ChartItem';
 import styles from '../styles/Type.module.css';
 import scaleLoaderStyle from '../styles/ScaleLoader';
+const NUMBER_OF_SONGS = 10
 
 class Chart extends Component {
   constructor(props) {
@@ -11,7 +12,7 @@ class Chart extends Component {
 
     const songSnippets = []
     const dataArray = props.data.serverData
-    dataArray.length === 20 && dataArray.map((value, index) => {
+    dataArray.length === NUMBER_OF_SONGS && dataArray.map((value, index) => {
       return songSnippets.push(new Audio(value.preview_url))
     })
 
@@ -72,8 +73,7 @@ class Chart extends Component {
         transitionEnter={false}
         transitionLeave={false}
       >
-        <h1 className={styles.h1Style}>Your Top 20 Tracks</h1>
-        <div onClick={()=>this.reRender()}>click</div>
+        <h1 className={styles.h1Style}>Your Top {NUMBER_OF_SONGS} Tracks</h1>
         <div className="chartList">
           {(this.props.data.serverData).map((value, index) => {
             return <ChartItem song={value} index={index} key={index} play={this.handleClick} />
