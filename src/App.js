@@ -30,7 +30,7 @@ class App extends Component {
       this.setState({ isLoggedIn: true })
     }
 
-    axios.get(`https://api.spotify.com/v1/me/top/tracks`, config)
+    axios.get(`https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=10`, config)
       .then(response => {
         this.setState({
           serverData: response.data.items,
