@@ -40,7 +40,6 @@ class Chart extends Component {
     if (!this.state.isPlaying) {
     // No currently playing song - play user's song
       this.state.songSnippets[index].play()
-      this.state.songSnippets[index].addEventListener('ended', () => this.endSong())
       this.setState({ isPlaying: true })
     } else if ( this.state.songBeingPreviewed === index) {
       // User clicks on currently playing song (pause it)
@@ -58,6 +57,8 @@ class Chart extends Component {
       this.state.songSnippets[this.state.songBeingPreviewed].pause()
       this.state.songSnippets[index].play()
     }
+
+    this.state.songSnippets[index].addEventListener('ended', () => this.endSong())
 
     this.setState({
       songBeingPreviewed: index
