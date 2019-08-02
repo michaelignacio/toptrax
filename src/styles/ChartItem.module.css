@@ -1,38 +1,23 @@
 .chartItem {
-	display: flex;
+	align-items: center;
 	background-color: #1db954;
 	border: 1px solid transparent;
-	min-width: 650px;
+	display: flex;
 	margin-bottom: 5px;
-	align-items: center;
+	padding: 10px;
 }
 
-.chartItem .coverArt {
-	margin: 5px;
-}
-
-.chartItem .coverArt:hover {
-	cursor: pointer;
-}
-
-.chartItem .position {
+.position {
+	display: flex;
+	flex: 0 0 20%;
 	font-weight: 700;
 	font-size: 1.75rem;
-	align-items: center;
 	justify-content: center;
-	display: flex;
-	min-width: 100px;
-}
-
-.chartItem .songDetails {
-	padding-left: 20px;
-	margin-top: 20px;
 }
 
 .title {
 	font-weight: 700;
 	margin-bottom: 5px;
-	margin-top: 0;
 }
 
 .artists {
@@ -40,69 +25,19 @@
 	margin-top: 5px;
 }
 
+.chartItem:hover .coverArt:after {
+	opacity: 1;
+}
+
 @media (max-width: 767px) {
-	.icon {
-		display: none;
+	.chartItem .position {
+		font-size: 1rem;
+		min-width: 50px;
 	}
 
 	.chartItem {
 		min-width: 300px;
 		width: 90%;
 		margin: 10px auto;
-	}
-
-	.chartItem img {
-		width: 64px;
-		height: 64px;
-	}
-
-	.chartItem .position {
-		min-width: 70px;
-	}
-
-	.chartItem .songDetails {
-		padding: 0 30px;
-	}
-}
-
-@media (min-width: 992px) {
-	.chartItem .icon {
-		position: relative;
-		left: 50px;
-		top:  -80px;
-		opacity: 0;
-		transition: opacity .3s, top .3s;
-		color:  #fff;
-		font-size: 2rem;
-		z-index: 1;
-	}
-
-	.isPlaying .icon,
-	.chartItem:hover .icon {
-		opacity: 1;
-	}
-
-	.coverArt {
-		position: relative;
-		width: 128px;
-		height: 128px;
-	}
-
-	.coverArt:after {
-		content: '\A';
-		position: absolute;
-		width: 100%;
-		height:100%;
-		top: 0;
-		left: 0;
-		background: rgba(0,0,0,0.4);
-		opacity: 0;
-		transition: all .15s;
-		-webkit-transition: all .15s;
-	}
-
-	.isPlaying.coverArt:after,
-	.chartItem:hover .coverArt:after {
-		opacity: 1;
 	}
 }
