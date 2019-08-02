@@ -83,10 +83,11 @@
 	.position {
 		font-size: 1rem;
 		min-width: 50px;
+		flex: 0 0 10%;
 	}
 	.coverArt {
 		display: flex;
-		flex: 0 0 30%;
+		flex: 0 0 31%;
 	}
 
 	.coverArt:after {
