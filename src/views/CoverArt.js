@@ -9,10 +9,11 @@ class CoverArt extends Component {
   }
 
   render() {
+    const showPlayIcon = this.props.songBeingPreviewed && this.props.isAnythingPlaying ? true : false
     return (
-      <div className={styles.coverArt} onClick={this.handleClick}>
+      <div className={ showPlayIcon ? `${ styles.isPlaying } ${ styles.coverArt }` : `${ styles.coverArt }` } onClick={this.handleClick}>
         <img src={this.props.photo.images[1].url} width="128" height="128" alt={this.props.photo.name} />
-        <FontAwesomeIcon icon={ this.props.songBeingPreviewed && this.props.isAnythingPlaying ? faPause : faPlay } className={styles.icon} />
+        <FontAwesomeIcon icon={ showPlayIcon ? faPause : faPlay } className={styles.icon} />
       </div>
     )
   }
