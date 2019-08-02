@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faPause } from '@fortawesome/free-solid-svg-icons';
-import styles from '../styles/CoverArt.module.css';
+import styles from '../styles/ChartItem.module.css';
 
 class CoverArt extends Component {
   handleClick = () => {
