@@ -27,18 +27,20 @@ class App extends Component {
     }
 
     if ( accessToken ) {
-      this.setState({ isLoggedIn: true })
-    }
-
-    axios.get(`https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=10`, config)
-      .then(response => {
-        this.setState({
-          serverData: response.data.items,
-          isFetched: true
-        })
-      }).catch((error) => {
-        console.log(error)
+      this.setState({ isLoggedIn: true }, () => {
+        if ( this.state.isLoggedIn ) {
+          axios.get(`https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=10`, config)
+            .then(response => {
+              this.setState({
+                serverData: response.data.items,
+                isFetched: true
+              })
+            }).catch((error) => {
+              console.log(error)
+            })
+        }
       })
+    }
   }
 
   render () {
