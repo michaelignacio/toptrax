@@ -10,6 +10,7 @@ class CoverArt extends Component {
 
   render() {
     const showPlayIcon = this.props.songBeingPreviewed && this.props.isAnythingPlaying ? true : false
+
     return (
       <div className={ showPlayIcon ? `${ styles.isPlaying } ${ styles.coverArt }` : `${ styles.coverArt }` } onClick={this.handleClick}>
         <img src={this.props.photo.images[1].url} width="128" height="128" alt={this.props.photo.name} />
