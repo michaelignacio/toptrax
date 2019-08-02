@@ -31,14 +31,12 @@ class Chart extends Component {
     this.setState({
       isPlaying: false,
       songBeingPreviewed: -1
-    }, () => {
-      console.log('ended')
     })
   }
 
   playSong(index) {
     if (!this.state.isPlaying) {
-    // No currently playing song - play user's song
+    // No currently playing song (play user's song)
       this.state.songSnippets[index].play()
       this.setState({ isPlaying: true })
     } else if ( this.state.songBeingPreviewed === index) {
