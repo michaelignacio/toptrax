@@ -20,7 +20,7 @@
 }
 
 .btn:hover {
-    background-color: darken(#1db954, 10%);
+    background-color: #04A03B;
 }
 
 .fa {
@@ -34,7 +34,7 @@
 }
 
 .btn.github:hover {
-    background-color: darken(#fff, 15%);
+    background-color: #ddd;
 }
 
 @media (max-width: 767px) {
