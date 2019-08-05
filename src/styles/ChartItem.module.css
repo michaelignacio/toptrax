@@ -109,6 +109,13 @@
 	}
 }
 
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+	.icon {
+		left: -80px;
+		top:  -50px;
+	}
+}
+
 @media (min-width: 992px) {
 	.coverArt {
 		width: 128px;
