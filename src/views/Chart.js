@@ -68,6 +68,22 @@ class Chart extends Component {
     })
   }
 
+  getOperatingSystem() {
+    let operatingSystem = 'Unknown OS'
+
+    if ( navigator.appVersion.indexOf('Win') !== -1 ) {
+      operatingSystem = 'Windows'
+    } else if ( navigator.appVersion.indexOf('Mac') !== -1 ) {
+      operatingSystem = 'MacOS'
+    } else if ( navigator.appVersion.indexOf('X11') !== -1 ) {
+      operatingSystem = 'UNIX'
+    } else if ( navigator.appVersion.indexOf('Linux') !== -1 ) {
+      operatingSystem = 'Linux'
+    }
+
+    return operatingSystem
+  }
+
   render() {
     if (this.props.data.isLoggedIn && !this.props.data.isFetched) {
       return (
@@ -89,20 +105,29 @@ class Chart extends Component {
         transitionAppearTimeout={500}
         transitionAppear={true}
         transitionEnter={false}
-        transitionLeave={false}
-      >
+        transitionLeave={false}>
+
         <h1 className={styles.h1Style}>Your Top {NUMBER_OF_SONGS} Tracks</h1>
-        <a
-          className={btnStyles.btn}
+
+        <a className={btnStyles.btn}
           target="_blank"
           rel="noopener noreferrer"
-          href={this.props.data.spotifyUrl}
-          >
+          href={this.getOperatingSystem() === 'UNIX' ? this.props.data.webUrl : this.props.data.spotifyUrl}>
           Open Playlist in Spotify <FontAwesomeIcon icon={faSpotify} className={btnStyles.fa} />
         </a>
+
         <div className="chartList">
           {(this.props.data.serverData).map((value, index) => {
-            return <ChartItem song={value} index={index} key={index} play={this.handleClick} songBeingPreviewed={this.state.songBeingPreviewed} isAnythingPlaying={this.state.isPlaying} />
+            return (
+              <ChartItem
+                song={value}
+                index={index}
+                key={index}
+                play={this.handleClick}
+                songBeingPreviewed={this.state.songBeingPreviewed}
+                isAnythingPlaying={this.state.isPlaying}
+              />
+            )
           })}
         </div>
       </CSSTransitionGroup>
