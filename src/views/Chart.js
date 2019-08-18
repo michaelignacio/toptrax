@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { ScaleLoader } from 'react-spinners';
 import { CSSTransitionGroup } from 'react-transition-group';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpotify } from '@fortawesome/free-brands-svg-icons';
 import ChartItem from './ChartItem';
 import styles from '../styles/Type.module.css';
+import btnStyles from '../styles/Button.module.css';
 import scaleLoaderStyle from '../styles/ScaleLoader';
 const NUMBER_OF_SONGS = 10
 
@@ -89,6 +92,14 @@ class Chart extends Component {
         transitionLeave={false}
       >
         <h1 className={styles.h1Style}>Your Top {NUMBER_OF_SONGS} Tracks</h1>
+        <a
+          className={btnStyles.btn}
+          target="_blank"
+          rel="noopener noreferrer"
+          href={this.props.data.spotifyUrl}
+          >
+          Open Playlist in Spotify <FontAwesomeIcon icon={faSpotify} className={btnStyles.fa} />
+        </a>
         <div className="chartList">
           {(this.props.data.serverData).map((value, index) => {
             return <ChartItem song={value} index={index} key={index} play={this.handleClick} songBeingPreviewed={this.state.songBeingPreviewed} isAnythingPlaying={this.state.isPlaying} />
