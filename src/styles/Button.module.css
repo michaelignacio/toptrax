@@ -37,6 +37,21 @@
     background-color: #ddd;
 }
 
+.btnSpotify {
+    composes: btn;
+    width: 300px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    background-color: transparent;
+    border-color: #04a03b;
+    border: 1px solid #04a03b;
+    color: #04a03b;
+}
+
+.btnSpotify:hover {
+    color: #fff;
+}
+
 @media (max-width: 767px) {
     .btn {
         padding-top: 16px;
