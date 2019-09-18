@@ -16,13 +16,17 @@ class Chart extends Component {
     const songSnippets = []
     const dataArray = props.data.serverData
     dataArray.length === NUMBER_OF_SONGS && dataArray.map((value, index) => {
-      return songSnippets.push(new Audio(value.preview_url))
+      if (value.preview_url) {
+        return songSnippets.push(new Audio(value.preview_url))
+      } else if (value.preview_url === null) {
+        return songSnippets.push(false)
+      }
     })
 
     this.state = {
       songBeingPreviewed: false,
       isPlaying: false,
-      songSnippets: songSnippets
+      songSnippets
     }
   }
 
@@ -109,7 +113,7 @@ class Chart extends Component {
 
         <h1 className={styles.h1Style}>Your Top {NUMBER_OF_SONGS} Tracks</h1>
 
-        <a className={btnStyles.btn}
+        <a className={btnStyles.btnSpotify}
           target="_blank"
           rel="noopener noreferrer"
           href={this.getOperatingSystem() === 'UNIX' ? this.props.data.webUrl : this.props.data.spotifyUrl}>
@@ -126,6 +130,7 @@ class Chart extends Component {
                 play={this.handleClick}
                 songBeingPreviewed={this.state.songBeingPreviewed}
                 isAnythingPlaying={this.state.isPlaying}
+                songSnippets={this.state.songSnippets}
               />
             )
           })}
