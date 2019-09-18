@@ -1,38 +1,40 @@
 import React, { Component } from 'react';
 import queryString from 'query-string';
 import axios from 'axios';
-import LoginScreen from './views/LoginScreen';
 import Chart from './views/Chart';
+import LoginScreen from './views/LoginScreen';
 import styles from './styles/App.module.css';
-import './App.scss';
 
 class App extends Component {
   constructor() {
     super()
+
     this.state = {
-      serverData: {},
+      displayName: '',
       isFetched: false,
       isLoggedIn: false,
-      userId: '',
       playlistId: '',
-      webUrl: '',
+      serverData: {},
       spotifyUrl: '',
-      displayName: ''
+      userId: '',
+      webUrl: ''
     }
   }
 
-  mapSongs() {
-    return this.state.serverData.map(song => song.uri)
+  getToken() {
+    let parsed = queryString.parse(window.location.search);
+
+    return parsed.access_token;
+  }
+
+  getConfig() {
+    return {
+      headers: { 'Authorization': 'Bearer ' + this.getToken() }
+    }
   }
 
   getUserId() {
-    let parsed = queryString.parse(window.location.search);
-    let accessToken = parsed.access_token;
-    let config = {
-      headers: {'Authorization': 'Bearer ' + accessToken}
-    }
-
-    axios.get(`https://api.spotify.com/v1/me`, config)
+    axios.get('https://api.spotify.com/v1/me', this.config)
       .then(response => {
         this.setState({
           userId: response.data.id,
@@ -44,21 +46,15 @@ class App extends Component {
   }
 
   getUsersPlaylists() {
-    let parsed = queryString.parse(window.location.search);
-    let accessToken = parsed.access_token;
-    let config = {
-      headers: {'Authorization': 'Bearer ' + accessToken}
-    }
-
     let foundPlaylist = false
     let that = this
 
-    axios.get(`https://api.spotify.com/v1/users/${this.state.userId}/playlists`, config)
+    axios.get(`https://api.spotify.com/v1/users/${this.state.userId}/playlists`, this.config)
       .then(response => {
         let playlists = response.data.items
 
         playlists.forEach (function (playlist, index) {
-          // if TopTrax playlist exists
+          // if the playlist TopTrax exists
           if ( playlist.name === 'TopTrax' && !foundPlaylist ) {
             that.setState({ webUrl: playlist.external_urls.spotify })
             that.setState({ spotifyUrl: playlist.uri })
@@ -66,8 +62,7 @@ class App extends Component {
             foundPlaylist = true
           }
         })
-
-        // if TopTrax playlist does not exist, create new one
+        // if the playlist TopTrax does not exist, create it
         if (!foundPlaylist) {
           that.createPlaylist()
         }
@@ -77,11 +72,6 @@ class App extends Component {
   }
 
   createPlaylist() {
-    let parsed = queryString.parse(window.location.search);
-    let accessToken = parsed.access_token;
-    let config = {
-      headers: {'Authorization': 'Bearer ' + accessToken}
-    }
     let that = this
 
     let bodyParameters = {
@@ -90,7 +80,7 @@ class App extends Component {
       public: true
     }
 
-    axios.post(`https://api.spotify.com/v1/users/${this.state.userId}/playlists`, bodyParameters, config)
+    axios.post(`https://api.spotify.com/v1/users/${this.state.userId}/playlists`, bodyParameters, this.config)
       .then(response => {
         that.setState({ webUrl: response.data.external_urls.spotify })
         that.setState({ spotifyUrl: response.data.uri })
@@ -98,41 +88,30 @@ class App extends Component {
       })
   }
 
-  addTrackstoPlaylist(id) {
-    let parsed = queryString.parse(window.location.search);
-    let accessToken = parsed.access_token;
-    let config = {
-      headers: {'Authorization': 'Bearer ' + accessToken}
-    }
+  mapSongs() {
+    return this.state.serverData.map(song => song.uri)
+  }
 
+  addTrackstoPlaylist(id) {
     let mappedSongs = this.mapSongs()
 
     let bodyParameters = {
       uris: mappedSongs
     }
 
-    axios.put(`https://api.spotify.com/v1/playlists/${id}/tracks`, bodyParameters, config)
+    axios.put(`https://api.spotify.com/v1/playlists/${id}/tracks`, bodyParameters, this.config)
       .then(response => {
-        // console.log(response)
+        console.log(response)
       }).catch((error) => {
         console.log(error)
       })
   }
 
   componentDidMount() {
-    let parsed = queryString.parse(window.location.search);
-    let accessToken = parsed.access_token;
-    let config = {
-      headers: {'Authorization': 'Bearer ' + accessToken},
-      params: {
-        time_range: 'long_term'
-      }
-    }
-
-    if ( accessToken ) {
+    if ( this.getToken() ) {
       this.setState({ isLoggedIn: true }, () => {
         if ( this.state.isLoggedIn ) {
-          axios.get(`https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=10`, config)
+          axios.get( 'https://api.spotify.com/v1/me/top/tracks?time_range=long_term&limit=10', this.getConfig() )
             .then(response => {
               this.setState({
                 serverData: response.data.items,
@@ -151,8 +130,8 @@ class App extends Component {
     return (
       <div className={this.state.isFetched ? `${styles.App} ${styles.loggedIn}` : styles.App }>
         { this.state.isLoggedIn && this.state.isFetched ?
-          <Chart data={this.state} />
-          : <LoginScreen data={this.state} /> }
+          <Chart data={this.state} /> : <LoginScreen data={this.state} />
+        }
       </div>
     );
   }
