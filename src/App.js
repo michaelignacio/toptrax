@@ -62,6 +62,7 @@ class App extends Component {
             foundPlaylist = true
           }
         })
+        
         // if the playlist TopTrax does not exist, create it
         if (!foundPlaylist) {
           that.createPlaylist()

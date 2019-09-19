@@ -18,9 +18,8 @@ class Chart extends Component {
     dataArray.length === NUMBER_OF_SONGS && dataArray.map((value, index) => {
       if (value.preview_url) {
         return songSnippets.push(new Audio(value.preview_url))
-      } else if (value.preview_url === null) {
-        return songSnippets.push(false)
       }
+      return songSnippets.push(false)
     })
 
     this.state = {
