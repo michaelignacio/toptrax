@@ -6,7 +6,6 @@
 	margin-bottom: 5px;
 	padding: 10px;
 	border-radius: 5px;
-	padding-right: 75px;
 }
 
 .position {
@@ -28,7 +27,7 @@
 }
 
 .coverArt {
-	flex: 0 0 30%;
+	flex: 0 0 18.5%;
 	position: relative;
 }
 
@@ -39,7 +38,7 @@
 .coverArt:after {
 	content: '\A';
 	position: absolute;
-	width: 69.5%;
+	width: 100%;
 	height: 100%;
 	top: 0;
 	left: 0;
@@ -73,6 +72,11 @@
 .isPlaying .icon,
 .chartItem:hover .icon {
 	opacity: 1;
+}
+
+.songDetails {
+	flex: 0 0 40%;
+	margin-left: 50px;
 }
 
 @media (max-width: 767px) {
@@ -125,7 +129,7 @@
 	}
 
 	.icon {
-		left: -75px;
-		top:  -50px;
+		left: 50px;
+		top: -85px;
 	}
 }
