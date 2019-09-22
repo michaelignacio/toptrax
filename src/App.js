@@ -34,13 +34,14 @@ class App extends Component {
   }
 
   getUserId() {
-    axios.get('https://api.spotify.com/v1/me', this.config)
+    axios.get('https://api.spotify.com/v1/me', this.getConfig())
       .then(response => {
         this.setState({
           userId: response.data.id,
           displayName: response.data.display_name
         }, () => this.getUsersPlaylists() )
       }).catch((error) => {
+        console.log('here')
         console.log(error)
       })
   }
@@ -49,7 +50,7 @@ class App extends Component {
     let foundPlaylist = false
     let that = this
 
-    axios.get(`https://api.spotify.com/v1/users/${this.state.userId}/playlists`, this.config)
+    axios.get(`https://api.spotify.com/v1/users/${this.state.userId}/playlists`, this.getConfig())
       .then(response => {
         let playlists = response.data.items
 
@@ -81,7 +82,7 @@ class App extends Component {
       public: true
     }
 
-    axios.post(`https://api.spotify.com/v1/users/${this.state.userId}/playlists`, bodyParameters, this.config)
+    axios.post(`https://api.spotify.com/v1/users/${this.state.userId}/playlists`, bodyParameters, this.getConfig())
       .then(response => {
         that.setState({ webUrl: response.data.external_urls.spotify })
         that.setState({ spotifyUrl: response.data.uri })
@@ -100,7 +101,7 @@ class App extends Component {
       uris: mappedSongs
     }
 
-    axios.put(`https://api.spotify.com/v1/playlists/${id}/tracks`, bodyParameters, this.config)
+    axios.put(`https://api.spotify.com/v1/playlists/${id}/tracks`, bodyParameters, this.getConfig())
       .then(response => {
         console.log(response)
       }).catch((error) => {
