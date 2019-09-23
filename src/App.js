@@ -103,7 +103,7 @@ class App extends Component {
 
     axios.put(`https://api.spotify.com/v1/playlists/${id}/tracks`, bodyParameters, this.getConfig())
       .then(response => {
-        console.log(response)
+        // console.log(response)
       }).catch((error) => {
         console.log(error)
       })

@@ -74,15 +74,9 @@
 	opacity: 1;
 }
 
-.songDetails {
-	flex: 0 0 40%;
-	margin-left: 50px;
-}
-
 @media (max-width: 767px) {
 	.chartItem {
-		min-width: 300px;
-		width: 90%;
+		width: 280px;
 		margin: 10px auto;
 	}
 
@@ -91,15 +85,20 @@
 		min-width: 50px;
 		flex: 0 0 10%;
 	}
+
 	.coverArt {
 		display: flex;
-		flex: 0 0 31%;
+	}
+
+	.coverArt img {
+		width: 72px;
+		height: 72px;
 	}
 
 	.coverArt:after {
 		content: '\A';
 		position: absolute;
-		width: 82%;
+		width: 72%;
 		height: 100%;
 		top: 0;
 		left: 0;
@@ -110,12 +109,15 @@
 	}
 
 	.icon {
-		left: -80px;
-		top:  50px;
+		left: -50px;
+		top: 20px;
 	}
 }
 
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+@media only screen and 
+(min-device-width: 768px) and 
+(max-device-width: 1024px) and 
+(orientation: portrait) {
 	.icon {
 		left: -80px;
 		top:  -50px;
@@ -131,5 +133,10 @@
 	.icon {
 		left: 50px;
 		top: -85px;
+	}
+
+	.songDetails {
+		flex: 0 0 40%;
+		margin-left: 50px;
 	}
 }
