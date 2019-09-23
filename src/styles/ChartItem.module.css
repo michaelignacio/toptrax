@@ -120,8 +120,13 @@
 (max-device-width: 1024px) and 
 (orientation: portrait) {
 	.icon {
-		left: -80px;
-		top:  -50px;
+		left: 50px;
+		top:  -85px;
+	}
+
+	.coverArt {
+		height: 128px;
+		margin-right: 20px;
 	}
 }
 
