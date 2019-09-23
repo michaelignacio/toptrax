@@ -19,6 +19,7 @@ class CoverArt extends Component {
       <div className={ showPlayIcon ? `${ styles.isPlaying } ${ styles.coverArt }` : `${ styles.coverArt }` } onClick={this.handleClick}>
         <img src={this.props.photo.images[1].url} width="128" height="128" alt={this.props.photo.name} />
         {snippet && <FontAwesomeIcon icon={ showPlayIcon ? faPause : faPlay } className={styles.icon} /> }
+        {!snippet && <span className={styles.noSnippet}></span> }
       </div>
     )
   }

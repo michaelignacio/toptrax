@@ -112,6 +112,10 @@
 		left: -50px;
 		top: 20px;
 	}
+
+	.noSnippet {
+		margin-right: 27px;
+	}
 }
 
 @media only screen and 
